@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="org.bytedeco.javacpp-presets:ffmpeg:3.1.2-1.2" type="repository">
+    <properties maven-id="org.bytedeco.javacpp-presets:ffmpeg:3.1.2-1.2" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/bytedeco/javacpp-presets/ffmpeg/3.1.2-1.2/ffmpeg-3.1.2-1.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/bytedeco/javacpp/1.2/javacpp-1.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/bytedeco/javacpp-presets/ffmpeg/3.1.2-1.2/ffmpeg-3.1.2-1.2-windows-x86_64.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
