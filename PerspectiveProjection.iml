@@ -11,8 +11,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="org.bytedeco.javacpp-presets:ffmpeg:3.1.2-1.2" level="project" />
     <orderEntry type="library" name="org.bytedeco.javacpp-presets:opencv:3.1.0-1.2" level="project" />
     <orderEntry type="library" name="org.bytedeco:javacv:1.2" level="project" />
-    <orderEntry type="library" name="org.bytedeco.javacpp-presets:ffmpeg:3.1.2-1.2" level="project" />
   </component>
 </module>
