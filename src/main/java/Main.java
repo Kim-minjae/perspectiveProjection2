@@ -4,7 +4,7 @@
 import static org.bytedeco.javacpp.helper.opencv_core.CV_RGB;
 import static org.bytedeco.javacpp.opencv_core.*;
 import static org.bytedeco.javacpp.opencv_imgproc.*;
-import org.bytedeco.javacpp.Pointer;
+import  org.bytedeco.javacpp.Pointer;
 
 
 import org.bytedeco.javacpp.opencv_core.CvPoint;
@@ -14,8 +14,6 @@ import org.bytedeco.javacv.CanvasFrame;
 import org.bytedeco.javacv.Frame;
 import org.bytedeco.javacv.FrameGrabber;
 import org.bytedeco.javacv.OpenCVFrameConverter;
-import org.bytedeco.javacv.OpenCVFrameGrabber;
-import org.bytedeco.javacv.OpenCVFrameConverter.ToIplImage;
 
 import java.util.ArrayList;
 
@@ -41,10 +39,11 @@ public class Main {
 
 
             IplImage gray = cvCreateImage(cvGetSize(grabbedImage), 8, 1);
-            cvCvtColor(grabbedImage, gray, CV_BGR2GRAY);
-            cvCanny(gray, gray, 50, 100, 3);
-            cvCvtColor(gray,grabbedImage,CV_GRAY2BGR);
+
+            //cvCanny(gray, gray, 50, 100, 3);
+            //cvCvtColor(gray,grabbedImage,CV_GRAY2BGR);
             border.moveAndDraw(grabbedImage,grabbedImage,i);
+            //grabbedImage = redDetector(grabbedImage);
             Frame rotatedFrame = converter.convert(grabbedImage);
 
 
@@ -80,8 +79,9 @@ public class Main {
             System.out.println("Couldn't load source image.");
             return;
         }
-//        cvCanny(src, dst, 50, 100, 3);
-//        cvCvtColor(dst, colorDst, CV_GRAY2BGR);
+        cvCvtColor(src, src, CV_BGR2GRAY);
+        cvCanny(src, dst, 50, 100, 3);
+        cvCvtColor(dst, colorDst, CV_GRAY2BGR);
 
         lines = cvHoughLines2(dst, storage, CV_HOUGH_PROBABILISTIC, 1, Math.PI / 180, 40, 50, 10, 0, CV_PI);
 
@@ -98,11 +98,19 @@ public class Main {
         }
     }
 
-    public static int redLineDetector(IplImage src)
+    public static IplImage redDetector(IplImage src)
     {
 
 
-        return 0;
+        //color range of red like color
+        CvScalar min = cvScalar(0, 0, 130, 0);//BGR-A
+        CvScalar max= cvScalar(140, 110, 255, 0);//BGR-A
+
+        IplImage imgThreshold = cvCreateImage(cvGetSize(src), 8, 1);
+        //apply thresholding
+        cvInRangeS(src, min, max, imgThreshold);
+
+        return imgThreshold;
     }
 
     public static double lineLength(CvPoint pt1, CvPoint pt2) {
